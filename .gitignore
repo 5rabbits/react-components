@@ -3,3 +3,4 @@ stats.html
 tests/coverage
 dist
 yarn-error.log
+lerna-debug.log
