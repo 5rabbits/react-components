@@ -6,18 +6,25 @@ Demo/Docs: https://5rabbits.github.io/react-components
 
 ## Requirements
 
-- NodeJS >= 6.9.0
-- Yarn >= 1.0.0
+* NodeJS >= 6.9.0
+* Yarn >= 1.0.0
 
 ## Packages
 
 The `packages` directory holds each individual package. Each package has (at least) the following commands:
 
 ```shell
-$ yarn build # Build the package for production
-$ yarn start # Start the development server
-$ yarn test # Run the tests
-$ yarn test --watch # Run the tests in watch mode
+# Build the package for production
+$ yarn build
+
+# Start the development server
+$ yarn start
+
+# Run the tests
+$ yarn test
+
+# Run the tests in watch mode
+$ yarn test --watch
 ```
 
 ## Global commands
@@ -25,12 +32,23 @@ $ yarn test --watch # Run the tests in watch mode
 The following commands are available at the root of this repository:
 
 ```shell
-$ yarn create-package <name> # Creates a new individual package
-$ yarn build # Builds all the packages for production
-$ yarn start # Starts a storybook server for all packages
-$ yarn test # Tests all packages
-$ yarn lint # Lints all packages
-$ yarn prettify # Auto formats all packages code
+# Creates a new individual package
+$ yarn create-package <name>
+
+# Builds all the packages for production
+$ yarn build
+
+# Starts a storybook server for all packages
+$ yarn start
+
+# Tests all packages
+$ yarn test
+
+# Lints all packages
+$ yarn lint
+
+# Auto formats all packages code
+$ yarn prettify
 ```
 
 ## Lerna
