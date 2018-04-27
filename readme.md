@@ -4,6 +4,11 @@ This is a monorepo for individual 5rabbits react components.
 
 Demo/Docs: https://5rabbits.github.io/react-components
 
+## Requirements
+
+- NodeJS >= 6.9.0
+- Yarn >= 1.0.0
+
 ## Packages
 
 The `packages` directory holds each individual package. Each package has (at least) the following commands:
