@@ -90,7 +90,7 @@
       "tests/test-helper.js"
     ],
     "coverageReporters": ["html", "text-summary", "lcov"],
-    "snapshotSerializers": ["<rootDir>/node_modules/enzyme-to-json/serializer"],
+    "snapshotSerializers": ["<rootDir>/../../node_modules/enzyme-to-json/serializer"],
     "setupTestFrameworkScriptFile": "<rootDir>/tests/setup.js",
     "resolver": "jest-directory-named-resolver"
   },
