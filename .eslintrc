@@ -9,8 +9,9 @@
     "import/no-extraneous-dependencies": ["error", {
       "devDependencies": [
         "stories/*",
-        "rollup.config.js",
-        "tests/*",
+        "**/stories/*",
+        "**/rollup.config.js",
+        "**/tests/*",
         "**/__tests__/*"
       ]
     }]

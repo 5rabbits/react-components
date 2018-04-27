@@ -1,26 +1,48 @@
 {
- "name": "@5rabbits/react-components",
- "version": "0.1.0",
- "workspaces": ["packages/*"],
- "private": true,
- "scripts": {
-  "create-package": "node scripts/create/create.js"
- },
- "devDependencies": {
-  "lerna": "^2.11.0"
- },
- "dependencies": {
-  "chalk": "2.3.2",
-  "commander": "2.15.0",
-  "directory-exists": "1.0.2",
-  "fs-extra": "5.0.0",
-  "lodash": "^4.17.5",
-  "ora": "2.0.0",
-  "recursive-readdir": "2.2.2",
-  "uppercamelcase": "3.0.0",
-  "validate-npm-package-name": "3.0.0"
- },
- "engines": {
-  "node": ">=6.9.0"
- }
+  "name": "@5rabbits/react-components",
+  "version": "0.1.0",
+  "workspaces": ["packages/*"],
+  "private": true,
+  "scripts": {
+    "create-package": "node scripts/create/create.js",
+    "lint": "eslint . --ext .js,.jsx",
+    "prettify": "prettier \"**/*.{js,json,css,md}\" --write"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{js,json,css,md}": ["prettier --write", "git add"],
+    "*.js": ["eslint"]
+  },
+  "devDependencies": {
+    "@5rabbits/eslint-config": "^1.0.0",
+    "@5rabbits/eslint-import-resolver-directory-named": "^0.1.0",
+    "babel-eslint": "^8.2.0",
+    "eslint": "^4.9.0",
+    "eslint-config-airbnb": "16.1.0",
+    "eslint-config-prettier": "^2.9.0",
+    "eslint-plugin-import": "^2.7.0",
+    "eslint-plugin-jsx-a11y": "^6.0.2",
+    "eslint-plugin-react": "^7.4.0",
+    "husky": "^0.15.0-rc.13",
+    "lerna": "^2.11.0",
+    "lint-staged": "^7.0.0"
+  },
+  "dependencies": {
+    "chalk": "2.3.2",
+    "commander": "2.15.0",
+    "directory-exists": "1.0.2",
+    "fs-extra": "5.0.0",
+    "lodash": "^4.17.5",
+    "ora": "2.0.0",
+    "recursive-readdir": "2.2.2",
+    "uppercamelcase": "3.0.0",
+    "validate-npm-package-name": "3.0.0"
+  },
+  "engines": {
+    "node": ">=6.9.0"
+  }
 }

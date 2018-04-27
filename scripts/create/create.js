@@ -1,5 +1,7 @@
 #!/usr/bin/env node
 
+/* eslint-disable no-console */
+
 const program = require('commander')
 const lodash = require('lodash')
 const fs = require('fs-extra')
@@ -16,31 +18,19 @@ const pkg = require('../../package.json')
 lodash.templateSettings.interpolate = /<%=([\s\S]+?)%>/g
 
 const spinner = ora()
-const originalCwd = process.cwd()
 let libraryName
 let packageName
 let componentName
 let templatePath
 let projectCwd
 
-program
-  .version(pkg.version)
-  .arguments('<library-name>')
-  .action(name => {
-    createProject(name)
-  })
-
-program.parse(process.argv)
-
-if (!libraryName) {
-  program.help()
-}
-
 function validateLibraryName() {
   const validation = validateNpmPackageName(libraryName)
 
   if (validation.errors) {
-    console.error(chalk.red('Package name can only contain URL-friendly characters'))
+    console.error(
+      chalk.red('Package name can only contain URL-friendly characters')
+    )
     process.exit(1)
   }
 }
@@ -54,28 +44,37 @@ function validateProjectDir() {
   }
 }
 
-function createProject(name) {
-  console.log('')
-  console.log(`${chalk.yellow(pkg.name)} v${pkg.version}\n`)
+function exec(command, options) {
+  return new Promise((resolve, reject) => {
+    childProcess.exec(command, options, (error, stdout) => {
+      if (error) {
+        reject(error)
+      } else {
+        resolve(stdout)
+      }
+    })
+  })
+}
 
-  libraryName = name
-  componentName = camelCase(libraryName)
-  projectCwd = path.join(process.cwd(), 'packages', libraryName)
-  templatePath = path.resolve(__dirname, 'template')
+function projectExec(command) {
+  return exec(command, { cwd: projectCwd })
+}
 
-  validateLibraryName()
-  validateProjectDir()
-
-  packageName = `@5rabbits/${libraryName}`
-
-  createProjectFiles()
-    .then(installDependencies)
-    .then(printSuccess)
+function evaluateFilePath(filePath) {
+  return filePath
+    .replace(/_COMPONENT_/g, componentName)
+    .replace(/_RENAME_/g, '')
 }
 
 function printSuccess() {
   console.log('')
-  console.log(chalk.green(`🦄  Your new package @5rabbits/${chalk.bold(libraryName)} is ready to start!`))
+  console.log(
+    chalk.green(
+      `🦄  Your new package @5rabbits/${chalk.bold(
+        libraryName
+      )} is ready to start!`
+    )
+  )
 
   console.log('')
   console.log(chalk.underline('What now?'))
@@ -98,11 +97,12 @@ function printSuccess() {
 function installDependencies() {
   spinner.start('Installing dependencies')
 
-  return projectExec('yarn')
-    .then(() => spinner.succeed('Dependencies installed'))
+  return projectExec('yarn').then(() =>
+    spinner.succeed('Dependencies installed')
+  )
 }
 
-function createProjectFiles(name) {
+function createProjectFiles() {
   return new Promise(resolve => {
     spinner.start(`Creating package ${chalk.bold(libraryName)}`)
 
@@ -112,43 +112,51 @@ function createProjectFiles(name) {
       componentName,
     }
 
-    readDir(templatePath)
-      .then(files => {
-        files.forEach(file => {
-          const filePath = file.replace(templatePath, '')
-          const fileContents = fs.readFileSync(file)
+    readDir(templatePath).then(files => {
+      files.forEach(file => {
+        const filePath = file.replace(templatePath, '')
+        const fileContents = fs.readFileSync(file)
 
-          fs.outputFileSync(
-            path.join(projectCwd, evaluateFilePath(filePath)),
-            lodash.template(fileContents)(templateValues)
-          )
-        })
-
-        spinner.succeed(`Package ${chalk.bold(libraryName)} created`)
-        resolve()
+        fs.outputFileSync(
+          path.join(projectCwd, evaluateFilePath(filePath)),
+          lodash.template(fileContents)(templateValues)
+        )
       })
-  })
-}
 
-function exec(command, options) {
-  return new Promise((resolve, reject) => {
-    childProcess.exec(command, options, function(error, stdout) {
-      if (error) {
-        reject(error)
-      }
-      else {
-        resolve(stdout)
-      }
+      spinner.succeed(`Package ${chalk.bold(libraryName)} created`)
+      resolve()
     })
   })
 }
 
-function projectExec(command) {
-  return exec(command, { cwd: projectCwd })
+function createProject(name) {
+  console.log('')
+  console.log(`${chalk.yellow(pkg.name)} v${pkg.version}\n`)
+
+  libraryName = name
+  componentName = camelCase(libraryName)
+  projectCwd = path.join(process.cwd(), 'packages', libraryName)
+  templatePath = path.resolve(__dirname, 'template')
+
+  validateLibraryName()
+  validateProjectDir()
+
+  packageName = `@5rabbits/${libraryName}`
+
+  createProjectFiles()
+    .then(installDependencies)
+    .then(printSuccess)
 }
 
-function evaluateFilePath(filePath) {
-  return filePath
-    .replace(/_COMPONENT_/g, componentName)
-    .replace(/_RENAME_/g, '')
+program
+  .version(pkg.version)
+  .arguments('<library-name>')
+  .action(name => {
+    createProject(name)
+  })
+
+program.parse(process.argv)
+
+if (!libraryName) {
+  program.help()
 }
