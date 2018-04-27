@@ -1,4 +1,4 @@
-# React components [![Build Status](https://travis-ci.org/5rabbits/react-components.svg?branch=master)](https://travis-ci.org/5rabbits/react-components)
+# React components [![Build Status](https://travis-ci.org/5rabbits/react-components.svg?branch=master)](https://travis-ci.org/5rabbits/react-components) [![codecov](https://codecov.io/gh/5rabbits/react-components/branch/master/graph/badge.svg)](https://codecov.io/gh/5rabbits/react-components)
 
 This is a monorepo for individual 5rabbits react components.
 
