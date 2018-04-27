@@ -29,19 +29,8 @@ import '<%= packageName %>/dist/<%= libraryName %>.css'
 
 * Run `yarn start` to start building the library in watch mode.
 * Write [stories](https://storybook.js.org) in the `stories/index.js` file.
-* This project [lints](https://eslint.org/) and [prettifies](https://prettier.io) source files automatically before commiting. You can run `yarn lint` and `yarn prettify` to do this operations manually before commiting (although you shouldn't need to).
 
 ## Testing
 
 * Execute `yarn test` to run the test with [jest](https://facebook.github.io/jest/). Use `yarn test --watch` to run the tests in watch mode.
 * After every run (even in watch mode), a summary coverage report will be displayed directly on the terminal and a full html report will be generated in `tests/coverage`.
-
-## Publishing
-
-* Run `yarn publish` to release a new version.
-* Before publishing the library will be automatically built. You can manually build for production using `yarn build`.
-* After publishing the stories will be automatically deployed to [github pages](https://5rabbits.github.io/react-components). You can manually deploy the stories using `yarn deploy-storybook`.
-
-## More info
-
-Read [@5rabbits/create-react-lib's wiki](https://github.com/5rabbits/create-react-lib/wiki) for extra information and advanced usage.
