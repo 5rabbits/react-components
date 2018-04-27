@@ -98,7 +98,7 @@ function printSuccess() {
 function installDependencies() {
   spinner.start('Installing dependencies')
 
-  return exec('yarn')
+  return projectExec('yarn')
     .then(() => spinner.succeed('Dependencies installed'))
 }
 
