@@ -1,12 +1,18 @@
 {
   "name": "@5rabbits/time-input",
-  "version": "0.2.2",
+  "version": "1.0.0",
   "main": "dist/time-input.js",
-  "files": ["dist/*"],
+  "files": [
+    "dist/*"
+  ],
   "license": "MIT",
   "description": "",
   "author": "5rabbits <5rabbits@lemontech.com> (http://www.5rabbits.com)",
-  "keywords": ["react", "5rabbits", "lemontech"],
+  "keywords": [
+    "react",
+    "5rabbits",
+    "lemontech"
+  ],
   "repository": "https://github.com/5rabbits/react-components",
   "publishConfig": {
     "access": "public"
@@ -14,8 +20,7 @@
   "homepage": "https://5rabbits.github.io/react-components",
   "scripts": {
     "build": "rollup -c",
-    "start":
-      "concurrently \"rollup -c -w\" \"start-storybook -p 9001\" --names \"rollup,storybook\" --kill-others",
+    "start": "concurrently \"rollup -c -w\" \"start-storybook -p 9001\" --names \"rollup,storybook\" --kill-others",
     "prepublish": "yarn build",
     "test": "jest"
   },
@@ -74,7 +79,11 @@
     "prop-types": "^15.5.0"
   },
   "jest": {
-    "moduleDirectories": ["src", "node_modules", "."],
+    "moduleDirectories": [
+      "src",
+      "node_modules",
+      "."
+    ],
     "moduleNameMapper": {
       "\\.css$": "identity-obj-proxy",
       "\\.svg$": "identity-obj-proxy"
@@ -86,7 +95,11 @@
       "tests/setup.js",
       "tests/test-helper.js"
     ],
-    "coverageReporters": ["html", "text-summary", "lcov"],
+    "coverageReporters": [
+      "html",
+      "text-summary",
+      "lcov"
+    ],
     "snapshotSerializers": [
       "<rootDir>/../../node_modules/enzyme-to-json/serializer"
     ],
