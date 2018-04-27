@@ -1,14 +1,13 @@
 import resolve from 'rollup-plugin-node-resolve'
 import commonjs from 'rollup-plugin-commonjs'
 import babel from 'rollup-plugin-babel'
-import cleaner from 'rollup-plugin-cleaner'
 import replace from 'rollup-plugin-replace'
 import postcss from 'rollup-plugin-postcss'
 import includePaths from 'rollup-plugin-includepaths'
 import json from 'rollup-plugin-json'
 import svg from 'rollup-plugin-svg-to-jsx'
-import filesize from 'rollup-plugin-filesize'
 import visualizer from 'rollup-plugin-visualizer'
+import namedDirectory from 'rollup-plugin-named-directory'
 
 const NODE_ENV = process.env.NODE_ENV || 'development'
 
@@ -28,14 +27,12 @@ export default {
   },
   external: ['react', 'react-dom'],
   plugins: [
-    cleaner({
-      targets: ['./dist/'],
-    }),
+    namedDirectory(),
     replace({
       'process.env.NODE_ENV': JSON.stringify(NODE_ENV),
     }),
     includePaths({
-      paths: ['src'],
+      paths: ['src', '.'],
     }),
     postcss({
       modules: true,
@@ -72,7 +69,6 @@ export default {
         'transform-object-rest-spread',
       ],
     }),
-    filesize(),
     visualizer(),
   ],
 }

@@ -1,8 +1,0 @@
-language: node_js
-cache: yarn
-notifications:
-  email: false
-before_install:
-  - yarn global add codecov
-after_success:
-  - codecov
