@@ -20,7 +20,7 @@ $ yarn test --watch # Run the tests in watch mode
 The following commands are available at the root of this repository:
 
 ```shell
-$ yarn create-page <name> # Creates a new individual package
+$ yarn create-package <name> # Creates a new individual package
 $ yarn build # Builds all the packages for production
 $ yarn start # Starts a storybook server for all packages
 $ yarn test # Tests all packages
