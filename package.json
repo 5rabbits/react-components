@@ -5,6 +5,7 @@
   "private": true,
   "scripts": {
     "create-package": "node scripts/create/create.js",
+    "deploy-storybook": "storybook-to-ghpages",
     "lint": "eslint . --ext .js,.jsx",
     "prettify": "prettier \"**/*.{js,json,css,md}\" --write",
     "start": "start-storybook -p 9001",

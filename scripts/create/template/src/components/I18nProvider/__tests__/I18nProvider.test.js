@@ -95,7 +95,7 @@ describe(I18nProvider, () => {
             en: {
               helloWorld: 'Hello new world',
             },
-          }
+          },
         })
 
         expect(component.find('span')).toHaveText('Hello new world')

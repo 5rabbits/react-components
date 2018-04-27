@@ -17,8 +17,6 @@
     "start":
       "concurrently \"rollup -c -w\" \"start-storybook -p 9001\" --names \"rollup,storybook\" --kill-others",
     "prepublish": "yarn build",
-    "postpublish": "yarn deploy-storybook",
-    "deploy-storybook": "storybook-to-ghpages",
     "test": "jest"
   },
   "devDependencies": {
@@ -26,7 +24,6 @@
     "@storybook/addon-knobs": "^3.4.0",
     "@storybook/addons": "^3.3.0",
     "@storybook/react": "^3.3.0",
-    "@storybook/storybook-deployer": "^2.3.0",
     "babel-core": "^6.0.0",
     "babel-jest": "^23.0.0-alpha.0",
     "babel-plugin-external-helpers": "^6.0.0",
